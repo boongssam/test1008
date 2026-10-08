@@ -1,0 +1,31 @@
+# Firebase App Hosting 설정
+# https://firebase.google.com/docs/app-hosting/configure
+
+runConfig:
+  minInstances: 0
+  maxInstances: 2
+  concurrency: 20
+  cpu: 1
+  memoryMiB: 1024
+  # Gemini가 PDF를 읽는 데 시간이 걸릴 수 있어 요청 제한 시간을 넉넉히 둔다.
+  timeoutSeconds: 300
+
+env:
+  # Gemini API 키: Cloud Secret Manager에 저장하고 서버 런타임에서만 읽는다.
+  #   firebase apphosting:secrets:set GEMINI_API_KEY
+  - variable: GEMINI_API_KEY
+    secret: GEMINI_API_KEY
+    availability:
+      - RUNTIME
+
+  # 사용할 Gemini 모델 (바꾸고 싶으면 여기만 수정)
+  - variable: GEMINI_MODEL
+    value: gemini-flash-latest
+    availability:
+      - RUNTIME
+
+  # 로그인을 허용할 교사 이메일(쉼표 구분). 비워 두면 로그인한 누구나 사용 가능.
+  - variable: ALLOWED_TEACHER_EMAILS
+    value: ""
+    availability:
+      - RUNTIME
