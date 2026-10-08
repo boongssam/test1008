@@ -25,7 +25,8 @@ env:
       - RUNTIME
 
   # 로그인을 허용할 교사 이메일(쉼표 구분). 비워 두면 로그인한 누구나 사용 가능.
-  - variable: ALLOWED_TEACHER_EMAILS
-    value: ""
-    availability:
-      - RUNTIME
+  # App Hosting은 빈 value를 허용하지 않으므로, 제한하려면 주석을 풀고 이메일을 넣는다.
+  # - variable: ALLOWED_TEACHER_EMAILS
+  #   value: teacher@example.com
+  #   availability:
+  #     - RUNTIME
